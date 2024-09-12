@@ -1,8 +1,8 @@
-import { Button } from "@/components/Buttons";
-import FlatList from "@/components/FlatList/FlatList";
-import { Header } from "@/components/Header";
+"use client";
+
 import { LayoutComponent } from "@/components/Layout";
-import { AiOutlinePlus } from "react-icons/ai";
+import { RadioButton } from "@/components/Radio";
+import { useState } from "react";
 
 export default function Home() {
   const flatList = [
@@ -31,19 +31,7 @@ export default function Home() {
 
   return (
     <LayoutComponent>
-      <FlatList data={flatList} />
-      <Button
-        type="primary"
-        label="ლისტინგის დამატება"
-        icon={<AiOutlinePlus />}
-      />
-      <Button
-        type="outline"
-        label="ლისტინგის დამატება"
-        icon={<AiOutlinePlus />}
-      />
-      <Button type="dark" label="წაშლა" />
-      <Button type="outlineDark" label="წაშლა" />
+      <h1>UI Components</h1>
     </LayoutComponent>
   );
 }
