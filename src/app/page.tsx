@@ -1,4 +1,6 @@
+import { ButtonOutline, ButtonPrimary } from "@/components/Buttons";
 import FlatList from "@/components/FlatList/FlatList";
+import { Header } from "@/components/Header";
 
 export default function Home() {
   const flatList = [
@@ -25,5 +27,12 @@ export default function Home() {
     },
   ];
 
-  return <FlatList data={flatList} />;
+  return (
+    <div>
+      <Header />
+      <FlatList data={flatList} />
+      <ButtonPrimary label="ლისტინგის დამატება" />
+      <ButtonOutline label="ლისტინგის დამატება" />
+    </div>
+  );
 }
