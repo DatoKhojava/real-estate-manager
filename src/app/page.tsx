@@ -1,11 +1,7 @@
-import {
-  ButtonDark,
-  ButtonDarkOutline,
-  ButtonOutline,
-  ButtonPrimary,
-} from "@/components/Buttons";
+import { Button } from "@/components/Buttons";
 import FlatList from "@/components/FlatList/FlatList";
 import { Header } from "@/components/Header";
+import { AiOutlinePlus } from "react-icons/ai";
 
 export default function Home() {
   const flatList = [
@@ -36,10 +32,18 @@ export default function Home() {
     <div>
       <Header />
       <FlatList data={flatList} />
-      <ButtonPrimary label="ლისტინგის დამატება" />
-      <ButtonOutline label="ლისტინგის დამატება" />
-      <ButtonDark label="ლისტინგის წაშლა" />
-      <ButtonDarkOutline label="ლისტინგის წაშლა" />
+      <Button
+        type="primary"
+        label="ლისტინგის დამატება"
+        icon={<AiOutlinePlus />}
+      />
+      <Button
+        type="outline"
+        label="ლისტინგის დამატება"
+        icon={<AiOutlinePlus />}
+      />
+      <Button type="dark" label="წაშლა" />
+      <Button type="outlineDark" label="წაშლა" />
     </div>
   );
 }
