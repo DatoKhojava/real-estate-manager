@@ -10,8 +10,6 @@ interface ButonProps {
 }
 
 export default function Button({ type, label, icon }: ButonProps) {
-  console.log(type, label, icon);
-
   const Button = classed("button", {
     variants: {
       color: {
