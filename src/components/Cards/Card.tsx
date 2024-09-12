@@ -14,7 +14,7 @@ export default function Card({
   is_rental: boolean;
 }) {
   return (
-    <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-2xl w-96">
+    <div className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-2xl w-96">
       <div className="relative h-56 overflow-hidden text-white rounded-md">
         <Image src={image} fill={true} alt="Picture of the author" />
       </div>
