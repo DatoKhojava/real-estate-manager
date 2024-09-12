@@ -1,4 +1,9 @@
-import { ButtonOutline, ButtonPrimary } from "@/components/Buttons";
+import {
+  ButtonDark,
+  ButtonDarkOutline,
+  ButtonOutline,
+  ButtonPrimary,
+} from "@/components/Buttons";
 import FlatList from "@/components/FlatList/FlatList";
 import { Header } from "@/components/Header";
 
@@ -33,6 +38,8 @@ export default function Home() {
       <FlatList data={flatList} />
       <ButtonPrimary label="ლისტინგის დამატება" />
       <ButtonOutline label="ლისტინგის დამატება" />
+      <ButtonDark label="ლისტინგის წაშლა" />
+      <ButtonDarkOutline label="ლისტინგის წაშლა" />
     </div>
   );
 }
