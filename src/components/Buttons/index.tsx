@@ -1,6 +1,3 @@
-import ButtonPrimary from "./ButtonPrimary";
-import ButtonOutline from "./ButtonOutline";
-import ButtonDark from "./ButtonDark";
-import ButtonDarkOutline from "./ButtonDarkOutline";
+import Button from "./Button";
 
-export { ButtonPrimary, ButtonOutline, ButtonDark, ButtonDarkOutline };
+export { Button };
