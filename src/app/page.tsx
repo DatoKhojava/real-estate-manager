@@ -1,6 +1,7 @@
 import { Button } from "@/components/Buttons";
 import FlatList from "@/components/FlatList/FlatList";
 import { Header } from "@/components/Header";
+import { LayoutComponent } from "@/components/Layout";
 import { AiOutlinePlus } from "react-icons/ai";
 
 export default function Home() {
@@ -29,8 +30,7 @@ export default function Home() {
   ];
 
   return (
-    <div>
-      <Header />
+    <LayoutComponent>
       <FlatList data={flatList} />
       <Button
         type="primary"
@@ -44,6 +44,6 @@ export default function Home() {
       />
       <Button type="dark" label="წაშლა" />
       <Button type="outlineDark" label="წაშლა" />
-    </div>
+    </LayoutComponent>
   );
 }
