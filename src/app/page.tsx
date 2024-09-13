@@ -1,10 +1,17 @@
 "use client";
 
+import { Button } from "@/components/Buttons";
+import { Checkbox } from "@/components/Checkbox";
+import { FilterMenu } from "@/components/Filter";
+import FlatList from "@/components/FlatList/FlatList";
+import { Header } from "@/components/Header";
 import { LayoutComponent } from "@/components/Layout";
-import { RadioButton } from "@/components/Radio";
 import { useState } from "react";
+import { CgMathPlus } from "react-icons/cg";
 
 export default function Home() {
+  const [isChecked, setIsChecked] = useState(false);
+
   const flatList = [
     {
       id: 1,
@@ -31,7 +38,25 @@ export default function Home() {
 
   return (
     <LayoutComponent>
-      <h1>UI Components</h1>
+      <div className="mt-20">
+        <div className="flex justify-between container mx-auto">
+          <FilterMenu />
+          <div className="flex gap-2">
+            <Button
+              label="ლისტინგის დამატება"
+              type={"primary"}
+              icon={<CgMathPlus />}
+            />
+            <Button
+              label="აგენტის დამატება"
+              type={"outline"}
+              icon={<CgMathPlus />}
+            />
+          </div>
+        </div>
+      </div>
+
+      <Checkbox isChecked={isChecked} onChange={setIsChecked} />
     </LayoutComponent>
   );
 }
