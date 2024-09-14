@@ -7,9 +7,10 @@ interface ButonProps {
   type: "primary" | "dark" | "outline" | "outlineDark";
   label: string;
   icon?: ReactNode;
+  onClick?: () => void;
 }
 
-export default function Button({ type, label, icon }: ButonProps) {
+export default function Button({ type, label, icon, onClick }: ButonProps) {
   const Button = classed("button", {
     variants: {
       color: {
@@ -28,6 +29,7 @@ export default function Button({ type, label, icon }: ButonProps) {
     <Button
       className="font-medium py-2 px-4 rounded-lg flex items-center space-x-2"
       color={type}
+      onClick={onClick}
     >
       {icon}
       <span className="font-FiraGO">{label}</span>
