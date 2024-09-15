@@ -51,25 +51,27 @@ export default function Flat({
         <div className="px-16 py-8 flex-grow max-w-[503px]">
           <div className="flex justify-between items-start mb-4">
             <h2 className="text-5xl font-bold text-gray-900 font-FiraGO">
-              80,458 ₾
+              {price} ₾
             </h2>
           </div>
           <div className="space-y-3 mt-6">
             <div className="flex items-center text-2xl text-[#808A93] font-FiraGO">
               <LuMapPin size={18} />
-              <span className="ml-1">თბილისი, ი. ჭავჭავაძის 53</span>
+              <span className="ml-1">
+                {city.name}, {address}
+              </span>
             </div>
             <div className="flex items-center text-2xl text-[#808A93] font-FiraGO">
               <LuExpand size={18} />
-              <span className="ml-1">ფართი 55 მ²</span>
+              <span className="ml-1">ფართი {area} მ²</span>
             </div>
             <div className="flex items-center text-2xl text-[#808A93] font-FiraGO">
               <LuBedDouble size={18} />
-              <span className="ml-1">საძინებელი 2</span>
+              <span className="ml-1">საძინებელი {bedrooms}</span>
             </div>
             <div className="flex items-center text-2xl text-[#808A93] font-FiraGO">
               <LuRuler size={18} />
-              <span className="ml-1">საფასური თვეში 2525</span>
+              <span className="ml-1">საფოსტო ინდექსი {zip_code}</span>
             </div>
           </div>
           <p className="text-base text-[#808A93] font-FiraGO font-normal my-10">
@@ -118,7 +120,9 @@ export default function Flat({
           <Modal isOpen={isModalOpen} onClose={closeModal}>
             {/* <div className="my-14 mx-40"> */}
             <div className="flex flex-col items-center justify-center my-14">
-              <h2 className="font-FiraGO font-normal text-black text-xl">გსურთ წაშალოთ ლისტინგი?</h2>
+              <h2 className="font-FiraGO font-normal text-black text-xl">
+                გსურთ წაშალოთ ლისტინგი?
+              </h2>
               <div className="flex gap-3.5 mt-9">
                 <Button label="გაუქმება" type="outline" onClick={closeModal} />
                 <Button label="დადასტურება" type="primary" />

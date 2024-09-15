@@ -1,6 +1,8 @@
 "use client";
 
+import { CarouselC } from "@/components/Carouse";
 import { Flat } from "@/components/Flat";
+import ByRegion from "@/components/FlatList/ByRegion";
 import { LayoutComponent } from "@/components/Layout";
 import Link from "next/link";
 
@@ -25,6 +27,140 @@ const listing = {
     },
   },
 };
+
+const FlatsByRegion = [
+  {
+    id: 1,
+    address: "შარტავას 2ა",
+    zip_code: "0101",
+    price: 100000,
+    area: 100.5,
+    bedrooms: 3,
+    is_rental: false,
+    image:
+      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+    city_id: 1,
+    city: {
+      id: 1,
+      name: "სოხუმი",
+      region_id: 1,
+      region: {
+        id: 1,
+        name: "აფხაზეთი",
+      },
+    },
+  },
+
+  {
+    id: 2,
+    address: "შარტავას 2ა",
+    zip_code: "0101",
+    price: 100000,
+    area: 100.5,
+    bedrooms: 3,
+    is_rental: false,
+    image:
+      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+    city_id: 1,
+    city: {
+      id: 1,
+      name: "სოხუმი",
+      region_id: 1,
+      region: {
+        id: 1,
+        name: "აფხაზეთი",
+      },
+    },
+  },
+
+  {
+    id: 23,
+    address: "შარტავას 2ა",
+    zip_code: "0101",
+    price: 100000,
+    area: 100.5,
+    bedrooms: 3,
+    is_rental: false,
+    image:
+      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+    city_id: 1,
+    city: {
+      id: 1,
+      name: "სოხუმი",
+      region_id: 1,
+      region: {
+        id: 1,
+        name: "აფხაზეთი",
+      },
+    },
+  },
+
+  {
+    id: 5,
+    address: "შარტავას 2ა",
+    zip_code: "0101",
+    price: 100000,
+    area: 100.5,
+    bedrooms: 3,
+    is_rental: false,
+    image:
+      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+    city_id: 1,
+    city: {
+      id: 1,
+      name: "სოხუმი",
+      region_id: 1,
+      region: {
+        id: 1,
+        name: "აფხაზეთი",
+      },
+    },
+  },
+
+  {
+    id: 565,
+    address: "შარტავას 2ა",
+    zip_code: "0101",
+    price: 100000,
+    area: 100.5,
+    bedrooms: 3,
+    is_rental: false,
+    image:
+      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+    city_id: 1,
+    city: {
+      id: 1,
+      name: "სოხუმი",
+      region_id: 1,
+      region: {
+        id: 1,
+        name: "აფხაზეთი",
+      },
+    },
+  },
+
+  {
+    id: 51265,
+    address: "შარტავას 2ა",
+    zip_code: "0101",
+    price: 100000,
+    area: 100.5,
+    bedrooms: 3,
+    is_rental: false,
+    image:
+      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+    city_id: 1,
+    city: {
+      id: 1,
+      name: "სოხუმი",
+      region_id: 1,
+      region: {
+        id: 1,
+        name: "აფხაზეთი",
+      },
+    },
+  },
+];
 
 export default function page() {
   return (
@@ -54,8 +190,8 @@ export default function page() {
         <h2 className="mt-12 font-FiraGO font-medium text-2xl">
           ბინები მსგავს ლოკაკიაზე
         </h2>
-        <div className="mt-14">
-          <h2>Carousel</h2>
+        <div className="mt-14 mb-20">
+          <ByRegion data={FlatsByRegion} />
         </div>
       </div>
     </LayoutComponent>

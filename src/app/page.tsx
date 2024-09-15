@@ -2,7 +2,6 @@
 
 import { FilterBadge } from "@/components/Badges";
 import { Button } from "@/components/Buttons";
-import { Checkbox } from "@/components/Checkbox";
 import { FilterMenu } from "@/components/Filter";
 import FlatList from "@/components/FlatList/FlatList";
 import { LayoutComponent } from "@/components/Layout";

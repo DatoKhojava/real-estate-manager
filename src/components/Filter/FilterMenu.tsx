@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Dropdown } from "../Dropdown";
 
 export default function FilterMenu() {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState<string>("");
 
+  const regionsOption = ["ქართლი", "კახეთი", "გურია", "აჭარა"];
   const options = ["რაღაცა", "რუღაცა", "რაღაცა 1"];
 
   const handleOptionSelect = (option: any) => {
@@ -15,7 +16,7 @@ export default function FilterMenu() {
   return (
     <div className="border border-slate-300 w-fit rounded-[10px] flex gap-6 p-1">
       <Dropdown
-        options={options}
+        options={regionsOption}
         selectedOption={selectedOption}
         onOptionSelect={handleOptionSelect}
         label="რეგიონი"
