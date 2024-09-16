@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Button } from "../Buttons";
 
 interface DropdownProps {
   options: string[];
@@ -8,30 +9,35 @@ interface DropdownProps {
   onOptionSelect: () => void;
   label: string;
   dropdownTitle: string;
+  children: React.ReactNode;
 }
 
 export default function Dropdown({
-  options,
   selectedOption,
-  onOptionSelect,
   label,
   dropdownTitle,
+  children,
 }: any) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLInputElement>(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleOptionSelect = (option: string) => {
-    onOptionSelect(option);
-    console.log(option);
-    setIsOpen(false);
-  };
+  // const handleOptionSelect = (option: string) => {
+  //   onOptionSelect(option);
+  //   console.log(option);
+  //   setIsOpen(false);
+  // };
 
   const handleClickOutside = (event: any) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
     }
+  };
+
+  const onSelecthandle = () => {
+    setIsOpen(!isOpen);
+    console.log(selectedOption);
   };
 
   useEffect(() => {
@@ -69,17 +75,15 @@ export default function Dropdown({
       </div>
 
       {isOpen && (
-        <div className="absolute z-10 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-          <div className="py-1">
-            {options.map((option: string) => (
-              <button
-                key={option}
-                onClick={() => handleOptionSelect(option)}
-                className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-              >
-                {option}
-              </button>
-            ))}
+        <div className="absolute z-10 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <div className="p-6">
+            <h2 className="font-FiraGO text-black font-bold text-lg">
+              {dropdownTitle}
+            </h2>
+            <div className="mt-6 mb-8">{children}</div>
+            <div className="float-end pb-6">
+              <Button label="არჩევა" type="primary" onClick={onSelecthandle} />
+            </div>
           </div>
         </div>
       )}
