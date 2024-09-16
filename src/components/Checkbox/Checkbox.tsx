@@ -3,13 +3,19 @@
 interface CheckboxProps {
   isChecked: boolean;
   onChange: React.Dispatch<React.SetStateAction<boolean>>;
+  checkboxId: string;
 }
 
-export default function Checkbox({ isChecked, onChange }: CheckboxProps) {
+export default function Checkbox({
+  isChecked,
+  onChange,
+  checkboxId,
+}: CheckboxProps) {
   return (
     <div className="inline-flex items-center">
       <label className="flex items-center cursor-pointer relative">
         <input
+          id={checkboxId}
           type="checkbox"
           checked={isChecked}
           onChange={() => onChange((prev) => !prev)}
