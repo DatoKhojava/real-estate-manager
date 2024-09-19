@@ -22,3 +22,11 @@ export interface Region {
   id: number;
   name: string;
 }
+
+export interface FormInput {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  // file: FileList;
+}

@@ -30,7 +30,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
     <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
       <div
         ref={modalRef}
-        className="bg-white rounded-lg shadow-lg w-full max-w-[623px] p-6 relative"
+        className="bg-white rounded-lg shadow-lg w-full max-w-[1000px] p-6 relative"
       >
         {children}
 

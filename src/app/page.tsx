@@ -4,7 +4,9 @@ import { FilterBadge } from "@/components/Badges";
 import { Button } from "@/components/Buttons";
 import { FilterMenu } from "@/components/Filter";
 import FlatList from "@/components/FlatList/FlatList";
+import { AgentForm } from "@/components/Forms";
 import { LayoutComponent } from "@/components/Layout";
+import { Modal } from "@/components/Modal";
 import { useState } from "react";
 import { CgMathPlus } from "react-icons/cg";
 
@@ -15,6 +17,18 @@ export default function Home() {
     { id: 3, value: "20000₾ - 100000₾" },
     { id: 4, value: "1" },
   ]);
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  // const [agentForm, setAgentForm] = useState<FormInput>({
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   phoneNumber: "",
+  //   file: "",
+  // });
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const removeTag = (id: number) => {
     setTags(tags.filter((tag) => tag.id !== id));
@@ -169,6 +183,7 @@ export default function Home() {
               label="აგენტის დამატება"
               type={"outline"}
               icon={<CgMathPlus />}
+              onClick={openModal}
             />
           </div>
         </div>
@@ -191,6 +206,20 @@ export default function Home() {
       <div>
         <FlatList data={flatList} />
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <div className="flex flex-col my-20">
+          <h2 className="font-FiraGO font-bold text-center text-black text-3xl">
+            აგენტის დამატება
+          </h2>
+          <div className="mt-10 mb-2">
+            <AgentForm
+              // setAgentForm={setAgentForm}
+              handlecloseModal={closeModal}
+            />
+          </div>
+        </div>
+      </Modal>
     </LayoutComponent>
   );
 }

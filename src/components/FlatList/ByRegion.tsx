@@ -1,16 +1,15 @@
 "use client";
 
-import Slider from "react-slick";
-import Image from "next/image";
-import { NextArrow, PrevArrow } from "../Buttons";
+import Link from "next/link";
 import {
   BiSolidArea,
   BiSolidBed,
   BiSolidDirections,
   BiSolidMapPin,
 } from "react-icons/bi";
+import Slider from "react-slick";
+import { NextArrow, PrevArrow } from "../Buttons";
 import { Card } from "../Cards";
-import { Badge } from "../Badges";
 
 export default function ByRegion({ ...data }: any) {
   const settings = {
@@ -23,14 +22,13 @@ export default function ByRegion({ ...data }: any) {
     prevArrow: <PrevArrow />,
   };
 
-  console.log(data);
-
   return (
     <div>
       <Slider {...settings}>
         {data?.data?.map((property: any) => (
           <div key={property.id} className="p-4">
-            <Card image={property.image} is_rental={property.is_rental}>
+            <Link href={`${property.id}`}>
+              <Card image={property.image} is_rental={property.is_rental}>
                 <div className="p-5.5">
                   <span className="font-FiraGO font-bold text-3xl text-[#021526]">
                     {property.price
@@ -62,6 +60,7 @@ export default function ByRegion({ ...data }: any) {
                   </div>
                 </div>
               </Card>
+            </Link>
           </div>
         ))}
       </Slider>

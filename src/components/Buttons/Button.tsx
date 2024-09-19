@@ -1,7 +1,7 @@
 "use client";
 
 import { classed } from "@tw-classed/react";
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface ButonProps {
   type: "primary" | "dark" | "outline" | "outlineDark";
