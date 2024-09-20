@@ -11,6 +11,13 @@ export interface Estate {
   city: City;
 }
 
+export interface Agent {
+  id: number;
+  name: string;
+  surname: string;
+  avatar: string;
+}
+
 export interface City {
   id: number;
   name: string;

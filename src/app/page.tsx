@@ -7,6 +7,9 @@ import FlatList from "@/components/FlatList/FlatList";
 import { AgentForm } from "@/components/Forms";
 import { LayoutComponent } from "@/components/Layout";
 import { Modal } from "@/components/Modal";
+import { estateService } from "@/services/estate";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { useState } from "react";
 import { CgMathPlus } from "react-icons/cg";
 
@@ -34,139 +37,148 @@ export default function Home() {
     setTags(tags.filter((tag) => tag.id !== id));
   };
 
-  const flatList = [
-    {
-      id: 1,
-      address: "შარტავას 2ა",
-      zip_code: "0101",
-      price: 100000,
-      area: 100.5,
-      bedrooms: 3,
-      is_rental: false,
-      image:
-        "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-      city_id: 1,
-      city: {
-        id: 1,
-        name: "სოხუმი",
-        region_id: 1,
-        region: {
-          id: 1,
-          name: "აფხაზეთი",
-        },
-      },
-    },
+  const {
+    data: estates,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["estate"],
+    queryFn: estateService.getAll,
+  });
 
-    {
-      id: 2,
-      address: "შარტავას 2ა",
-      zip_code: "0101",
-      price: 100000,
-      area: 100.5,
-      bedrooms: 3,
-      is_rental: false,
-      image:
-        "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-      city_id: 1,
-      city: {
-        id: 1,
-        name: "სოხუმი",
-        region_id: 1,
-        region: {
-          id: 1,
-          name: "აფხაზეთი",
-        },
-      },
-    },
+  // const flatList = [
+  //   {
+  //     id: 1,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
 
-    {
-      id: 23,
-      address: "შარტავას 2ა",
-      zip_code: "0101",
-      price: 100000,
-      area: 100.5,
-      bedrooms: 3,
-      is_rental: false,
-      image:
-        "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-      city_id: 1,
-      city: {
-        id: 1,
-        name: "სოხუმი",
-        region_id: 1,
-        region: {
-          id: 1,
-          name: "აფხაზეთი",
-        },
-      },
-    },
+  //   {
+  //     id: 2,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
 
-    {
-      id: 5,
-      address: "შარტავას 2ა",
-      zip_code: "0101",
-      price: 100000,
-      area: 100.5,
-      bedrooms: 3,
-      is_rental: false,
-      image:
-        "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-      city_id: 1,
-      city: {
-        id: 1,
-        name: "სოხუმი",
-        region_id: 1,
-        region: {
-          id: 1,
-          name: "აფხაზეთი",
-        },
-      },
-    },
+  //   {
+  //     id: 23,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
 
-    {
-      id: 565,
-      address: "შარტავას 2ა",
-      zip_code: "0101",
-      price: 100000,
-      area: 100.5,
-      bedrooms: 3,
-      is_rental: false,
-      image:
-        "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-      city_id: 1,
-      city: {
-        id: 1,
-        name: "სოხუმი",
-        region_id: 1,
-        region: {
-          id: 1,
-          name: "აფხაზეთი",
-        },
-      },
-    },
+  //   {
+  //     id: 5,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
 
-    {
-      id: 51265,
-      address: "შარტავას 2ა",
-      zip_code: "0101",
-      price: 100000,
-      area: 100.5,
-      bedrooms: 3,
-      is_rental: false,
-      image:
-        "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-      city_id: 1,
-      city: {
-        id: 1,
-        name: "სოხუმი",
-        region_id: 1,
-        region: {
-          id: 1,
-          name: "აფხაზეთი",
-        },
-      },
-    },
-  ];
+  //   {
+  //     id: 565,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
+
+  //   {
+  //     id: 51265,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
+  // ];
 
   return (
     <LayoutComponent>
@@ -174,11 +186,13 @@ export default function Home() {
         <div className="flex justify-between ">
           <FilterMenu />
           <div className="flex gap-2">
-            <Button
-              label="ლისტინგის დამატება"
-              type={"primary"}
-              icon={<CgMathPlus />}
-            />
+            <Link
+              className="bg-[#FF4136] hover:bg-[#ff554d] active:bg-[#E63A30] text-white font-medium py-2 px-4 rounded-lg flex items-center space-x-2"
+              href="/create-listing"
+            >
+              <CgMathPlus />
+              <span className="font-FiraGO">ლისტინგის დამატება</span>
+            </Link>
             <Button
               label="აგენტის დამატება"
               type={"outline"}
@@ -204,7 +218,7 @@ export default function Home() {
         </span>
       </div>
       <div>
-        <FlatList data={flatList} />
+        <FlatList data={estates} />
       </div>
 
       <Modal isOpen={isModalOpen} onClose={closeModal}>
@@ -213,10 +227,7 @@ export default function Home() {
             აგენტის დამატება
           </h2>
           <div className="mt-10 mb-2">
-            <AgentForm
-              // setAgentForm={setAgentForm}
-              handlecloseModal={closeModal}
-            />
+            <AgentForm handlecloseModal={closeModal} />
           </div>
         </div>
       </Modal>

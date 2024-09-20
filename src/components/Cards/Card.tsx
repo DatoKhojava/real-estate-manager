@@ -15,11 +15,11 @@ export default function Card({
 }) {
   return (
     <div className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-2xl">
-      <div className="relative h-56 overflow-hidden text-white rounded-md">
+      <div className="relative h-[350px] overflow-hidden text-white rounded-md">
         <Image
-          className="object-contain"
+          fill
+          className="object-cover"
           src={image}
-          fill={true}
           alt="image"
         />
       </div>

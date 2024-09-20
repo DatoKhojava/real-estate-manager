@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "api.real-estate-manager.redberryinternship.ge",
         port: "",
-        pathname: "/storage/agent_avatars/**",
+        pathname: "/storage/images/**",
       },
     ],
   },

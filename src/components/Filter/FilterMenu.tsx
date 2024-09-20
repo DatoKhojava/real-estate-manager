@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Dropdown } from "../Dropdown";
 import { Checkbox } from "../Checkbox";
 import PricesFilter from "./PricesFilter";
 import AreaFilter from "./AreaFilter";
+import Popup from "../Popup/Popup";
 
 const regions = [
   {
@@ -66,7 +66,6 @@ export default function FilterMenu() {
   const [areaRange, setAreaRange] = useState<string>();
   const [rooms, setRooms] = useState("");
 
-
   const regionsHandler = (region: { id: number; name: string }) => {
     if (regionList.includes(region.id)) {
       setRegionsList(regionList.filter((i) => i !== region.id));
@@ -77,7 +76,7 @@ export default function FilterMenu() {
 
   return (
     <div className="border border-slate-300 w-fit rounded-[10px] flex gap-6 p-1">
-      <Dropdown
+      <Popup
         selectedOption={regionList}
         label="რეგიონი"
         dropdownTitle="რეგიონის მიხედვით"
@@ -99,22 +98,22 @@ export default function FilterMenu() {
             </div>
           ))}
         </div>
-      </Dropdown>
-      <Dropdown
+      </Popup>
+      <Popup
         selectedOption={priceRange}
         label="საფასო კატეგორია"
         dropdownTitle="ფასის მიხედვით"
       >
         <PricesFilter setPriceRange={setPriceRange} />
-      </Dropdown>
-      <Dropdown
+      </Popup>
+      <Popup
         selectedOption={areaRange}
         label="ფართობი"
         dropdownTitle="ფართობის მიხედვით"
       >
         <AreaFilter setAreaRange={setAreaRange} />
-      </Dropdown>
-      <Dropdown
+      </Popup>
+      <Popup
         selectedOption={rooms}
         label="საძინებლების რაოდენობა"
         dropdownTitle="საძინებლის მიხედვით"
@@ -129,7 +128,7 @@ export default function FilterMenu() {
             placeholder="1"
           />
         </div>
-      </Dropdown>
+      </Popup>
     </div>
   );
 }

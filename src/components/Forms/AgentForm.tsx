@@ -1,54 +1,15 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
 import { useRef, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "../Buttons";
-import TextInput from "./TextInput";
 import ShowPrew from "./ShowPrew";
+import TextInput from "./TextInput";
+import { AgentScheme } from "@/services/validators";
 
-const schema = z.object({
-  firstName: z
-    .string({ message: "სახელის ველი სავალდებულოა" })
-    .min(2, { message: "სახელის ველი ნაკლებია 2 სიმბოლოზე" }),
-  lastName: z
-    .string({ message: "გვარის ველი სავალდებულოა" })
-    .min(2, { message: "გვარის ველი ნაკლებია 2 სიმბოლოზე" }),
-  email: z
-    .string({ message: "ელ-ფოსტა სავალდებულოა" })
-    .email({ message: "ელ-ფოსტის ფორმატი არასწორია" })
-    .refine(
-      (e) => {
-        return e.endsWith("@redberry.ge");
-      },
-      { message: "ელ-ფოსტა უნდა მთავრდებოდეს @redberry.ge" }
-    ),
-  phoneNumber: z
-    .string()
-    .min(1, { message: "ტელეფონის ნომერი სავალდებულოა" })
-    .regex(/^5\d{8}$/, {
-      message: "იყოს ფორმატის 5XXXXXXXX",
-    }),
-  agentAvatar: z
-    .custom<FileList>(
-      (files) => files instanceof FileList && files.length > 0,
-      {
-        message: "Image is required",
-      }
-    )
-    .refine(
-      (files) => files[0].size <= 5 * 1024 * 1024, // Max 5MB size limit
-      { message: "Image size must be less than 5MB" }
-    )
-    .refine(
-      (files) => ["image/jpeg", "image/png"].includes(files[0].type), // Allow only JPEG and PNG
-      { message: "Only JPEG or PNG images are allowed" }
-    ),
-});
-
-type formFields = z.infer<typeof schema>;
+type formFields = z.infer<typeof AgentScheme>;
 
 export default function AgentForm({ handlecloseModal }: any) {
   const [preview, setPreview] = useState<string | null>(null);
@@ -59,7 +20,7 @@ export default function AgentForm({ handlecloseModal }: any) {
     control,
     formState: { errors },
   } = useForm<formFields>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(AgentScheme),
   });
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
