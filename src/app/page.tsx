@@ -1,101 +1,234 @@
-import Image from "next/image";
+"use client";
+
+import { FilterBadge } from "@/components/Badges";
+import { Button } from "@/components/Buttons";
+import { FilterMenu } from "@/components/Filter";
+import FlatList from "@/components/FlatList/FlatList";
+import { AgentForm } from "@/components/Forms";
+import { LayoutComponent } from "@/components/Layout";
+import { Modal } from "@/components/Modal";
+import { estateService } from "@/services/estate";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { useState } from "react";
+import { CgMathPlus } from "react-icons/cg";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [tags, setTags] = useState([
+    { id: 1, value: "ბათუმი" },
+    { id: 2, value: "55 მ² - 90 მ²" },
+    { id: 3, value: "20000₾ - 100000₾" },
+    { id: 4, value: "1" },
+  ]);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  // const [agentForm, setAgentForm] = useState<FormInput>({
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   phoneNumber: "",
+  //   file: "",
+  // });
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const removeTag = (id: number) => {
+    setTags(tags.filter((tag) => tag.id !== id));
+  };
+
+  const {
+    data: estates,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["estate"],
+    queryFn: estateService.getAll,
+  });
+  //   {
+  //     id: 1,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
+
+  //   {
+  //     id: 2,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
+
+  //   {
+  //     id: 23,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
+
+  //   {
+  //     id: 5,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
+
+  //   {
+  //     id: 565,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
+
+  //   {
+  //     id: 51265,
+  //     address: "შარტავას 2ა",
+  //     zip_code: "0101",
+  //     price: 100000,
+  //     area: 100.5,
+  //     bedrooms: 3,
+  //     is_rental: false,
+  //     image:
+  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
+  //     city_id: 1,
+  //     city: {
+  //       id: 1,
+  //       name: "სოხუმი",
+  //       region_id: 1,
+  //       region: {
+  //         id: 1,
+  //         name: "აფხაზეთი",
+  //       },
+  //     },
+  //   },
+  // ];
+
+  return (
+    <LayoutComponent>
+      <div className="mt-20">
+        <div className="flex justify-between ">
+          <FilterMenu />
+          <div className="flex gap-2">
+            <Link
+              className="bg-[#FF4136] hover:bg-[#ff554d] active:bg-[#E63A30] text-white font-medium py-2 px-4 rounded-lg flex items-center space-x-2"
+              href="/create-listing"
+            >
+              <CgMathPlus />
+              <span className="font-FiraGO">ლისტინგის დამატება</span>
+            </Link>
+            <Button
+              label="აგენტის დამატება"
+              type={"outline"}
+              icon={<CgMathPlus />}
+              onClick={openModal}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </div>
+      <div className="mt-4 mb-8">
+        {tags.map((tag) => (
+          <FilterBadge
+            key={tag.id}
+            value={tag.value}
+            onRemove={() => removeTag(tag.id)}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        ))}
+        <span
+          className="ml-4 font-FiraGO text-sm font-semibold cursor-pointer text-black hover:text-zinc-800"
+          onClick={() => alert("X")}
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          გასუფთავება
+        </span>
+      </div>
+      <div>
+        <FlatList data={estates} />
+      </div>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <div className="flex flex-col my-20">
+          <h2 className="font-FiraGO font-bold text-center text-black text-3xl">
+            აგენტის დამატება
+          </h2>
+          <div className="mt-10 mb-2">
+            <AgentForm handlecloseModal={closeModal} />
+          </div>
+        </div>
+      </Modal>
+    </LayoutComponent>
   );
 }
