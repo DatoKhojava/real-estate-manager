@@ -1,7 +1,7 @@
 "use client";
 
 import { ListingScheme } from "@/services/validators";
-import { zodResolver } from "@hookform/resolvers/zod";
+// import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { RadioButton } from "../Radio";
@@ -39,8 +39,6 @@ export default function ListingForm() {
 
   const {
     data: agentsData,
-    isLoading: agentsLoading,
-    isError: agentsError,
   } = useQuery({
     queryKey: ["agents"],
     queryFn: AgentsService.getAll,
@@ -48,8 +46,6 @@ export default function ListingForm() {
 
   const {
     data: regionsData,
-    isLoading: regionsLoading,
-    isError: regionsError,
   } = useQuery({
     queryKey: ["regions"],
     queryFn: RegionsService.getAll,
@@ -57,8 +53,6 @@ export default function ListingForm() {
 
   const {
     data: citiesData,
-    isLoading: citiesLoading,
-    isError: citiesError,
   } = useQuery({
     queryKey: ["cities"],
     queryFn: CitiesService.getAll,

@@ -22,13 +22,6 @@ export default function Home() {
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  // const [agentForm, setAgentForm] = useState<FormInput>({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   phoneNumber: "",
-  //   file: "",
-  // });
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -37,146 +30,10 @@ export default function Home() {
     setTags(tags.filter((tag) => tag.id !== id));
   };
 
-  const {
-    data: estates,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: estates } = useQuery({
     queryKey: ["estate"],
     queryFn: estateService.getAll,
   });
-  //   {
-  //     id: 1,
-  //     address: "შარტავას 2ა",
-  //     zip_code: "0101",
-  //     price: 100000,
-  //     area: 100.5,
-  //     bedrooms: 3,
-  //     is_rental: false,
-  //     image:
-  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-  //     city_id: 1,
-  //     city: {
-  //       id: 1,
-  //       name: "სოხუმი",
-  //       region_id: 1,
-  //       region: {
-  //         id: 1,
-  //         name: "აფხაზეთი",
-  //       },
-  //     },
-  //   },
-
-  //   {
-  //     id: 2,
-  //     address: "შარტავას 2ა",
-  //     zip_code: "0101",
-  //     price: 100000,
-  //     area: 100.5,
-  //     bedrooms: 3,
-  //     is_rental: false,
-  //     image:
-  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-  //     city_id: 1,
-  //     city: {
-  //       id: 1,
-  //       name: "სოხუმი",
-  //       region_id: 1,
-  //       region: {
-  //         id: 1,
-  //         name: "აფხაზეთი",
-  //       },
-  //     },
-  //   },
-
-  //   {
-  //     id: 23,
-  //     address: "შარტავას 2ა",
-  //     zip_code: "0101",
-  //     price: 100000,
-  //     area: 100.5,
-  //     bedrooms: 3,
-  //     is_rental: false,
-  //     image:
-  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-  //     city_id: 1,
-  //     city: {
-  //       id: 1,
-  //       name: "სოხუმი",
-  //       region_id: 1,
-  //       region: {
-  //         id: 1,
-  //         name: "აფხაზეთი",
-  //       },
-  //     },
-  //   },
-
-  //   {
-  //     id: 5,
-  //     address: "შარტავას 2ა",
-  //     zip_code: "0101",
-  //     price: 100000,
-  //     area: 100.5,
-  //     bedrooms: 3,
-  //     is_rental: false,
-  //     image:
-  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-  //     city_id: 1,
-  //     city: {
-  //       id: 1,
-  //       name: "სოხუმი",
-  //       region_id: 1,
-  //       region: {
-  //         id: 1,
-  //         name: "აფხაზეთი",
-  //       },
-  //     },
-  //   },
-
-  //   {
-  //     id: 565,
-  //     address: "შარტავას 2ა",
-  //     zip_code: "0101",
-  //     price: 100000,
-  //     area: 100.5,
-  //     bedrooms: 3,
-  //     is_rental: false,
-  //     image:
-  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-  //     city_id: 1,
-  //     city: {
-  //       id: 1,
-  //       name: "სოხუმი",
-  //       region_id: 1,
-  //       region: {
-  //         id: 1,
-  //         name: "აფხაზეთი",
-  //       },
-  //     },
-  //   },
-
-  //   {
-  //     id: 51265,
-  //     address: "შარტავას 2ა",
-  //     zip_code: "0101",
-  //     price: 100000,
-  //     area: 100.5,
-  //     bedrooms: 3,
-  //     is_rental: false,
-  //     image:
-  //       "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-  //     city_id: 1,
-  //     city: {
-  //       id: 1,
-  //       name: "სოხუმი",
-  //       region_id: 1,
-  //       region: {
-  //         id: 1,
-  //         name: "აფხაზეთი",
-  //       },
-  //     },
-  //   },
-  // ];
 
   return (
     <LayoutComponent>

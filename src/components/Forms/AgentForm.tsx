@@ -1,16 +1,16 @@
 "use client";
 
+import { AgentsService } from "@/services/agents";
+import { Agent } from "@/services/types";
+import { AgentScheme } from "@/services/validators";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemo, useRef, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useRef, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "../Buttons";
 import ShowPrew from "./ShowPrew";
 import TextInput from "./TextInput";
-import { AgentScheme } from "@/services/validators";
-import { useMutation } from "@tanstack/react-query";
-import { AgentsService } from "@/services/agents";
-import { Agent } from "@/services/types";
 
 type formFields = z.infer<typeof AgentScheme>;
 
@@ -170,7 +170,7 @@ export default function AgentForm({ handlecloseModal }: any) {
                 ref={fileInputRef}
                 className="hidden"
                 accept="image/jpeg, image/png"
-                onChange={(e: any) => {
+                onChange={(e) => {
                   field.onChange(e.target.files);
                   handlePreview(e.target.files);
                 }}

@@ -1,6 +1,11 @@
 "use client";
 
-export default function FilterBadge({ value, onRemove }: any) {
+interface BadgeProps { 
+  value: string,
+  onRemove: () => void
+}
+
+export default function FilterBadge({ value, onRemove }: BadgeProps) {
   return (
     <div className="inline-flex items-center px-3 py-1 bg-white text-black border rounded-full font-FiraGO text-sm font-normal">
       <span>{value}</span>

@@ -16,7 +16,6 @@ interface DropdownProps {
 
 export default function Dropdown({
   onChange,
-  value,
   options,
   disabled,
   label,
