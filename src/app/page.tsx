@@ -22,13 +22,6 @@ export default function Home() {
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  // const [agentForm, setAgentForm] = useState<FormInput>({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   phoneNumber: "",
-  //   file: "",
-  // });
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -37,11 +30,7 @@ export default function Home() {
     setTags(tags.filter((tag) => tag.id !== id));
   };
 
-  const {
-    data: estates,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: estates } = useQuery({
     queryKey: ["estate"],
     queryFn: estateService.getAll,
   });

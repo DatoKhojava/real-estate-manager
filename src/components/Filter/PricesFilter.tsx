@@ -2,10 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-interface PricesFilterProps {
-  setPriceRange: () => string;
-}
-
 export default function PricesFilter({ setPriceRange }: any) {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");

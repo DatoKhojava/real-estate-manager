@@ -2,7 +2,11 @@
 
 import { LuArrowRight } from "react-icons/lu";
 
-export default function NextArrow(props: any) {
+interface ButtonProps {
+  onClick: () => void;
+}
+
+export default function NextArrow(props: ButtonProps) {
   const { onClick } = props;
   return (
     <button

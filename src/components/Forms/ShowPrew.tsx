@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-function ShowPrew({ preview, handleDelete }: any) {
+function ShowPrew({ preview, handleDelete }) {
   return (
     <>
       {preview ? (

@@ -17,8 +17,6 @@ export default function FlatListItem({
   area,
   bedrooms,
   city,
-  city_id,
-  id,
   is_rental,
   zip_code,
 }: Estate) {

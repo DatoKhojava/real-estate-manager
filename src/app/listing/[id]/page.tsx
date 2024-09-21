@@ -10,11 +10,11 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 
 export default function page() {
-  const params = useParams();
+  const { id } = useParams();
 
   const { data: estateData } = useQuery({
-    queryKey: ["estateById", params.id],
-    queryFn: () => estateService.getById(parseInt(params.id as string)),
+    queryKey: ["estateById", id],
+    queryFn: () => estateService.getById(parseInt(id as string)),
   });
 
   const { data: estates } = useQuery({

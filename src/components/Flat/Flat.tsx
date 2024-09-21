@@ -1,7 +1,11 @@
 "use client";
 
+import { estateService } from "@/services/estate";
 import { Estate } from "@/services/types";
+import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
+import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
 import {
   LuBedDouble,
   LuExpand,
@@ -10,13 +14,9 @@ import {
   LuPhone,
   LuRuler,
 } from "react-icons/lu";
-import { Button } from "../Buttons";
 import { Badge } from "../Badges";
-import { useState } from "react";
+import { Button } from "../Buttons";
 import { Modal } from "../Modal";
-import { useMutation } from "@tanstack/react-query";
-import { estateService } from "@/services/estate";
-import { useRouter, useParams } from "next/navigation";
 
 export default function Flat({
   price,
@@ -25,8 +25,6 @@ export default function Flat({
   area,
   bedrooms,
   city,
-  city_id,
-  id,
   created_at,
   description,
   is_rental,

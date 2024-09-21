@@ -59,7 +59,7 @@ const regions = [
 
 export default function FilterMenu() {
   //global state
-  const [selectedOption, setSelectedOption] = useState();
+  // const [selectedOption, setSelectedOption] = useState();
   //Local States
   const [regionList, setRegionsList] = useState<number[]>([]);
   const [priceRange, setPriceRange] = useState<string>();

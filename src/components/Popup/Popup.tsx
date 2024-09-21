@@ -17,7 +17,7 @@ export default function Popup({
   label,
   PopupTitle,
   children,
-}: any) {
+}: PopupProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const PopupRef = useRef<HTMLInputElement>(null);
 
