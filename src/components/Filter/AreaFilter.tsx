@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-export default function AreaFilter({ setAreaRange }: any) {
+interface FilterProps {
+  setAreaRange: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function AreaFilter({ setAreaRange }: FilterProps) {
   const [minArea, setMinArea] = useState("");
   const [maxArea, setMaxArea] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
@@ -10,7 +14,7 @@ export default function AreaFilter({ setAreaRange }: any) {
   useEffect(() => {
     if (parseInt(maxArea) < parseInt(minArea)) setErrorMessage(true);
     setAreaRange(`${minArea}მ² - ${maxArea}მ²`);
-  }, [minArea, maxArea]);
+  }, [minArea, maxArea, setAreaRange]);
 
   return (
     <div className="w-96 font-FiraGO">

@@ -1,12 +1,20 @@
 "use client";
 
+interface RadioButtonProps {
+  label: string;
+  name: string;
+  value: string;
+  checked: boolean;
+  onChange: () => void;
+}
+
 export default function RadioButton({
   label,
   name,
   value,
   checked,
   onChange,
-}: any) {
+}: RadioButtonProps) {
   return (
     <div className="flex gap-10">
       <div className="inline-flex items-center">

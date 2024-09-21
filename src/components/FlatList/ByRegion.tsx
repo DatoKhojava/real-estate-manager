@@ -13,12 +13,13 @@ import { Card } from "../Cards";
 
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import { Estate } from "@/services/types";
 
-export default function ByRegion({ ...data }: any) {
+export default function ByRegion({ ...data }: Estate[]) {
   const settings = {
-    infinite: data?.data?.length < 4 ? false : true,
+    infinite: data?.length < 4 ? false : true,
     speed: 500,
-    arrows: data?.data?.length < 4 ? false : true,
+    arrows: data?.length < 4 ? false : true,
     autoplaySpeed: 500,
     slidesToShow: 4,
     slidesToScroll: 3,
@@ -26,10 +27,12 @@ export default function ByRegion({ ...data }: any) {
     prevArrow: <PrevArrow />,
   };
 
+  console.log(data);
+
   return (
     <div>
       <Slider {...settings}>
-        {data?.data?.map((property: any) => (
+        {data?.data?.map((property: Estate) => (
           <div key={property.id} className="p-4">
             <Link href={`${property.id}`}>
               <Card image={property.image} is_rental={property.is_rental}>

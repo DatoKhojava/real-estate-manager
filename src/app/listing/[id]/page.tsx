@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-export default function page() {
+export default function ListingPage() {
   const { id } = useParams();
 
   const { data: estateData } = useQuery({

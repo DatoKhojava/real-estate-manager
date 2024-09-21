@@ -3,7 +3,7 @@
 import { LuArrowLeft } from "react-icons/lu";
 
 interface ButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export default function PrevArrow(props: ButtonProps) {

@@ -13,6 +13,7 @@ import { AgentsService } from "@/services/agents";
 import { RegionsService } from "@/services/regions";
 import { useEffect, useState } from "react";
 import { CitiesService } from "@/services/cities";
+import { City } from "@/services/types";
 
 type formFields = z.infer<typeof ListingScheme>;
 
@@ -22,12 +23,11 @@ export default function ListingForm() {
 
   useEffect(() => {
     const selectedCities = citiesData?.filter(
-      (items: any) => parseInt(regionId) === items.region_id
+      (items: City) => parseInt(regionId) === items.region_id
     );
 
     setCitiesByRegion(selectedCities);
   }, [regionId]);
-  
 
   const {
     handleSubmit,
@@ -37,28 +37,22 @@ export default function ListingForm() {
     // resolver: zodResolver(ListingScheme),
   });
 
-  const {
-    data: agentsData,
-  } = useQuery({
+  const { data: agentsData } = useQuery({
     queryKey: ["agents"],
     queryFn: AgentsService.getAll,
   });
 
-  const {
-    data: regionsData,
-  } = useQuery({
+  const { data: regionsData } = useQuery({
     queryKey: ["regions"],
     queryFn: RegionsService.getAll,
   });
 
-  const {
-    data: citiesData,
-  } = useQuery({
+  const { data: citiesData } = useQuery({
     queryKey: ["cities"],
     queryFn: CitiesService.getAll,
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data) => {
     console.log(data);
   };
 
@@ -77,7 +71,7 @@ export default function ListingForm() {
                 label="იყიდება"
                 value="იყიდება"
                 checked={value === "იყიდება"}
-                onChange={(e: any) => onChange(e.target.value)}
+                onChange={(e) => onChange(e.target.value)}
                 onBlur={onBlur}
                 selected={value}
                 errors={errors?.status}
@@ -94,7 +88,7 @@ export default function ListingForm() {
                 label="ქირავდება"
                 value="ქირავდება"
                 checked={value === "ქირავდება"}
-                onChange={(e: any) => onChange(e.target.value)}
+                onChange={(e) => onChange(e.target.value)}
                 onBlur={onBlur}
                 selected={value}
                 errors={errors?.status}
@@ -144,7 +138,7 @@ export default function ListingForm() {
               <Controller
                 control={control}
                 name="region"
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({ field: { value } }) => (
                   // <TextInput
                   //   label="რეგიონი"
                   //   onChange={onChange}
@@ -171,7 +165,7 @@ export default function ListingForm() {
               <Controller
                 control={control}
                 name="city"
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({ field: { onChange, value } }) => (
                   // <TextInput
                   //   label="ქალაქი"
                   //   onChange={onChange}
@@ -260,7 +254,7 @@ export default function ListingForm() {
         <Controller
           control={control}
           name="bedrooms"
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange, onBlur } }) => (
             <textarea
               // label="საძინებლის რაოდენობა"
               onChange={onChange}
@@ -291,7 +285,7 @@ export default function ListingForm() {
           <Controller
             name="listingAvatar"
             control={control}
-            render={({ field }) => (
+            render={() => (
               <input
                 type="file"
                 // ref={fileInputRef}

@@ -18,7 +18,7 @@ export interface Agent {
   id: number;
   name: string;
   surname: string;
-  avatar: any;
+  avatar: FileList;
   email: string;
   phone: string;
 }

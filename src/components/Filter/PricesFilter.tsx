@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-export default function PricesFilter({ setPriceRange }: any) {
+interface FilterProps {
+  setPriceRange: React.Dispatch<React.SetStateAction<string>>;
+}
+
+
+export default function PricesFilter({ setPriceRange }: FilterProps) {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
@@ -10,7 +15,7 @@ export default function PricesFilter({ setPriceRange }: any) {
   useEffect(() => {
     if (parseFloat(maxPrice) < parseFloat(minPrice)) setErrorMessage(true);
     setPriceRange(`${minPrice}₾ - ${maxPrice}₾`);
-  }, [minPrice, maxPrice]);
+  }, [minPrice, maxPrice, setPriceRange]);
 
   return (
     <div className="w-96 font-FiraGO">

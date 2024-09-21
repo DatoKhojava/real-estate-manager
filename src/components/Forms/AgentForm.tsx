@@ -14,7 +14,11 @@ import TextInput from "./TextInput";
 
 type formFields = z.infer<typeof AgentScheme>;
 
-export default function AgentForm({ handlecloseModal }: any) {
+interface FormProps {
+  handlecloseModal: () => void;
+}
+
+export default function AgentForm({ handlecloseModal }: FormProps) {
   const [preview, setPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 

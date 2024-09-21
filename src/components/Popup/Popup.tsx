@@ -29,7 +29,7 @@ export default function Popup({
   //   setIsOpen(false);
   // };
 
-  const handleClickOutside = (event: any) => {
+  const handleClickOutside = (event) => {
     if (PopupRef.current && !PopupRef.current.contains(event.target)) {
       setIsOpen(false);
     }

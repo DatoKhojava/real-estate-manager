@@ -22,7 +22,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, handleClickOutside]);
 
   if (!isOpen) return null;
 
