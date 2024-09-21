@@ -9,13 +9,18 @@ export interface Estate {
   image: string;
   city_id: number;
   city: City;
+  description: string;
+  agent: Agent;
+  created_at: string;
 }
 
 export interface Agent {
   id: number;
   name: string;
   surname: string;
-  avatar: string;
+  avatar: any;
+  email: string;
+  phone: string;
 }
 
 export interface City {

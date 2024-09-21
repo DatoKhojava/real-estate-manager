@@ -1,168 +1,27 @@
 "use client";
 
-import { CarouselC } from "@/components/Carouse";
 import { Flat } from "@/components/Flat";
 import ByRegion from "@/components/FlatList/ByRegion";
 import { LayoutComponent } from "@/components/Layout";
+import { estateService } from "@/services/estate";
+import { Estate } from "@/services/types";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-
-const listing = {
-  id: 1,
-  address: "შარტავას 2ა",
-  zip_code: "0101",
-  price: 100000,
-  area: 100.5,
-  bedrooms: 3,
-  is_rental: false,
-  image:
-    "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-  city_id: 1,
-  city: {
-    id: 1,
-    name: "სოხუმი",
-    region_id: 1,
-    region: {
-      id: 1,
-      name: "აფხაზეთი",
-    },
-  },
-};
-
-const FlatsByRegion = [
-  {
-    id: 1,
-    address: "შარტავას 2ა",
-    zip_code: "0101",
-    price: 100000,
-    area: 100.5,
-    bedrooms: 3,
-    is_rental: false,
-    image:
-      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-    city_id: 1,
-    city: {
-      id: 1,
-      name: "სოხუმი",
-      region_id: 1,
-      region: {
-        id: 1,
-        name: "აფხაზეთი",
-      },
-    },
-  },
-
-  {
-    id: 2,
-    address: "შარტავას 2ა",
-    zip_code: "0101",
-    price: 100000,
-    area: 100.5,
-    bedrooms: 3,
-    is_rental: false,
-    image:
-      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-    city_id: 1,
-    city: {
-      id: 1,
-      name: "სოხუმი",
-      region_id: 1,
-      region: {
-        id: 1,
-        name: "აფხაზეთი",
-      },
-    },
-  },
-
-  {
-    id: 23,
-    address: "შარტავას 2ა",
-    zip_code: "0101",
-    price: 100000,
-    area: 100.5,
-    bedrooms: 3,
-    is_rental: false,
-    image:
-      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-    city_id: 1,
-    city: {
-      id: 1,
-      name: "სოხუმი",
-      region_id: 1,
-      region: {
-        id: 1,
-        name: "აფხაზეთი",
-      },
-    },
-  },
-
-  {
-    id: 5,
-    address: "შარტავას 2ა",
-    zip_code: "0101",
-    price: 100000,
-    area: 100.5,
-    bedrooms: 3,
-    is_rental: false,
-    image:
-      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-    city_id: 1,
-    city: {
-      id: 1,
-      name: "სოხუმი",
-      region_id: 1,
-      region: {
-        id: 1,
-        name: "აფხაზეთი",
-      },
-    },
-  },
-
-  {
-    id: 565,
-    address: "შარტავას 2ა",
-    zip_code: "0101",
-    price: 100000,
-    area: 100.5,
-    bedrooms: 3,
-    is_rental: false,
-    image:
-      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-    city_id: 1,
-    city: {
-      id: 1,
-      name: "სოხუმი",
-      region_id: 1,
-      region: {
-        id: 1,
-        name: "აფხაზეთი",
-      },
-    },
-  },
-
-  {
-    id: 51265,
-    address: "შარტავას 2ა",
-    zip_code: "0101",
-    price: 100000,
-    area: 100.5,
-    bedrooms: 3,
-    is_rental: false,
-    image:
-      "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png",
-    city_id: 1,
-    city: {
-      id: 1,
-      name: "სოხუმი",
-      region_id: 1,
-      region: {
-        id: 1,
-        name: "აფხაზეთი",
-      },
-    },
-  },
-];
+import { useParams } from "next/navigation";
 
 export default function page() {
+  const params = useParams();
+
+  const { data: estateData } = useQuery({
+    queryKey: ["estateById", params.id],
+    queryFn: () => estateService.getById(parseInt(params.id as string)),
+  });
+
+  const { data: estates } = useQuery({
+    queryKey: ["estate"],
+    queryFn: estateService.getAll,
+  });
+
   return (
     <LayoutComponent>
       <div className="mt-14">
@@ -184,14 +43,19 @@ export default function page() {
         </Link>
 
         <div>
-          <Flat {...listing} />
+          <Flat {...estateData!} />
         </div>
 
         <h2 className="mt-12 font-FiraGO font-medium text-2xl">
           ბინები მსგავს ლოკაკიაზე
         </h2>
         <div className="mt-14 mb-20">
-          <ByRegion data={FlatsByRegion} />
+          <ByRegion
+            data={estates?.filter(
+              (item: Estate) =>
+                item.city.region_id === estateData?.city.region_id
+            )}
+          />
         </div>
       </div>
     </LayoutComponent>

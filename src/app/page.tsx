@@ -45,8 +45,6 @@ export default function Home() {
     queryKey: ["estate"],
     queryFn: estateService.getAll,
   });
-
-  // const flatList = [
   //   {
   //     id: 1,
   //     address: "შარტავას 2ა",

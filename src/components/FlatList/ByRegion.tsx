@@ -11,11 +11,15 @@ import Slider from "react-slick";
 import { NextArrow, PrevArrow } from "../Buttons";
 import { Card } from "../Cards";
 
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+
 export default function ByRegion({ ...data }: any) {
   const settings = {
-    dots: false,
-    infinite: true,
+    infinite: data?.data?.length < 4 ? false : true,
     speed: 500,
+    arrows: data?.data?.length < 4 ? false : true,
+    autoplaySpeed: 500,
     slidesToShow: 4,
     slidesToScroll: 3,
     nextArrow: <NextArrow />,

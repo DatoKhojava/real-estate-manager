@@ -1,13 +1,16 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "../Buttons";
 import ShowPrew from "./ShowPrew";
 import TextInput from "./TextInput";
 import { AgentScheme } from "@/services/validators";
+import { useMutation } from "@tanstack/react-query";
+import { AgentsService } from "@/services/agents";
+import { Agent } from "@/services/types";
 
 type formFields = z.infer<typeof AgentScheme>;
 
@@ -21,6 +24,11 @@ export default function AgentForm({ handlecloseModal }: any) {
     formState: { errors },
   } = useForm<formFields>({
     resolver: zodResolver(AgentScheme),
+  });
+
+  const mutation = useMutation({
+    mutationKey: ["addAgent"],
+    mutationFn: (data: Agent) => AgentsService.postAgent(data),
   });
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
@@ -49,7 +57,15 @@ export default function AgentForm({ handlecloseModal }: any) {
 
   const onSubmit: SubmitHandler<formFields> = (data) => {
     const file = data.agentAvatar[0];
-    console.log(data);
+    mutation.mutate({
+      name: data.firstName,
+      surname: data.lastName,
+      email: data.email,
+      phone: data.phoneNumber,
+      avatar: file,
+    });
+
+    console.log(file);
   };
 
   const handlePreview = (fileList: FileList | null) => {
