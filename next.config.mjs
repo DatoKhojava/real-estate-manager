@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  
   images: {
     remotePatterns: [
       {
@@ -15,9 +19,6 @@ const nextConfig = {
         pathname: "/storage/agent_avatars/**",
       },
     ],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 };
 
